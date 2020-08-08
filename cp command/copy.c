@@ -10,7 +10,7 @@ int main(int argc, char* argv[]){
   char buf[1];
 
   if(argc != 3){
-    printf("usage is of the following format: ./a.out sourceFileName destinationFileName\n");
+    printf("Usage is of the following format: ./a.out sourceFileName destinationFileName\n");
     exit(1);
   }
 
