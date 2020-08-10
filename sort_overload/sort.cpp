@@ -34,7 +34,7 @@ double strtodouble(char *str)
 
 }
 
-void sort1(int *a, int n,int flag)
+void sort(int *a, int n,int flag)
 {
 if(flag==1)
         {
@@ -78,7 +78,7 @@ if(flag==2){
 
 }
 }
-void sort2(char *a,int n, int flag)
+void sort(char *a,int n, int flag)
 {
         if(flag==1)
         {
@@ -122,7 +122,7 @@ if(flag==2){
 
 }
 }
-void sort3(double *a, int n,int flag)
+void sort(double *a, int n,int flag)
 {
 if(flag==1)
         {
@@ -204,7 +204,7 @@ int main(int argc, char *argv[])
 		a[j]= strtoint(argv[i]);
 		j++;
 	}
-        sort1(a,n,flag);
+        sort(a,n,flag);
         }
 
         else
@@ -214,7 +214,7 @@ int main(int argc, char *argv[])
                 b[j]= strtodouble(argv[i]);
                 j++;
         }
-        sort3(b,n,flag);
+        sort(b,n,flag);
         }
 }
 	
@@ -227,7 +227,7 @@ int main(int argc, char *argv[])
 		c[j]= argv[i][0];
 		j++;
 	}
-        sort2(c,n,flag);
+        sort(c,n,flag);
 	}
 	
         printf("\n");
