@@ -40,6 +40,11 @@ int main(int argc, char *argv[])
 	printf("Size: %d\n",n );
 	printf("A/D status: %d\n",flag );
 
+	if(flag>2){
+		printf("Wrong input format\n");
+		exit(1);
+	}
+
 	int a[100];int j=0;
 
 	for(int i=3;j<n;i++)
