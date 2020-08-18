@@ -86,7 +86,9 @@ void sort(int (*first)(int[],int),int array[], int count )
 
      for (j=0;j <= count-1 ; j++)
       { 
-       printf("%d    ",array[j]);
+       printf("%d    ",
+
+       	array[j]);
       }
      
      }
