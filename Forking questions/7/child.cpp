@@ -4,6 +4,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include<string>
+#include<bits/stdc++.h>
 using namespace std;
 int main(int argc, char *argv[])
 {   
@@ -18,7 +19,8 @@ int main(int argc, char *argv[])
 		a[j]= stoi(argv[i]);
 		j++;
 	}
-	
+
+sort(a+n/2,a+n);
 int beg=n/2;
 int end=n;
 bool flag=false;
