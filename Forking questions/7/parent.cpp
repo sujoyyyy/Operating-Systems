@@ -6,9 +6,10 @@
 #include<bits/stdc++.h>
 #include<string>
 using namespace std;
-bool flag=false;
+
 int main(int argc, char *argv[])
 {   
+  int count=0;
   int n;n= stoi(argv[1]);
   int key=stoi(argv[2]);
   int a[100];int j=0;
@@ -25,7 +26,17 @@ int main(int argc, char *argv[])
   int mid=(beg+end)/2;
   if(a[mid]==key)
   {
-    flag=true;
+    count++;
+    for(int i=mid+1;i<end;i++)
+    	if(a[i]==key)
+    		count++;
+    	else
+    		break;
+    for(int i=beg;i<mid;i++)
+    	if(a[i]==key)
+    		count++;
+    	else
+    		break;
     break;
   }
   else if(a[mid]<key)
@@ -35,15 +46,11 @@ int main(int argc, char *argv[])
   else
     end=mid-1;
   }
-  if(flag==true)
-  {
-  printf("Found in first half\n");
-  }
+  printf("Occurences in first half = %d\n",count);
   pid_t p=fork();
   if(p==0){
   wait(NULL);
-  if(flag==false){
-  
+    
   char *args[n+3];
   args[0]=argv[1];
   args[1]=argv[2];
@@ -55,8 +62,6 @@ int main(int argc, char *argv[])
   execv("./child",args);
   
 }
-}
-
 
 return 0;}
 

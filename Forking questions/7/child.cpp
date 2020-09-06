@@ -9,7 +9,7 @@ using namespace std;
 int main(int argc, char *argv[])
 {   
 	
-
+  int count=0;
 	int n= stoi(argv[0]);
 	int a[100];int j=0;
 	int key=stoi(argv[1]);
@@ -29,7 +29,17 @@ while(beg<=end)
   int mid=(beg+end)/2;
   if(a[mid]==key)
   {
-    flag=true;
+    count++;
+    for(int i=mid+1;i<end;i++)
+      if(a[i]==key)
+        count++;
+      else
+        break;
+    for(int i=beg;i<mid;i++)
+      if(a[i]==key)
+        count++;
+      else
+        break;
     break;
   }
   else if(a[mid]<key)
@@ -39,15 +49,8 @@ while(beg<=end)
   else
     end=mid-1;
 }
-if(flag==false)
-{
-  printf("Not found in second half\n");
-}
-else
-{
-  printf("Found in second half\n");
-}
-}
+ printf("Occurences in second half = %d\n",count);
 
 
 
+return 0;}
