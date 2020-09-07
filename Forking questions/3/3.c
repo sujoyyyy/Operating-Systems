@@ -14,8 +14,9 @@ int main()
   
   for(int i=1;i<=n;i++)
   {
+  
+  pid = vfork();
   int sum=0;int k=i;
-  pid = fork();
   if (pid == 0)
     {
         while(k!=0)
@@ -24,14 +25,13 @@ int main()
           sum+=t*t*t;
           k=k/10;
         }
-       
+       pid=1;
     }
       if (pid > 0)
-        pid = waitpid(pid, &status, 0);
-
-      if(sum==i)
+      { pid = waitpid(pid, &status, 0);
+        if(sum==i)
         printf("Armstrong number = %d\n",i);
-      
+      }
     
   }
   exit(0);
