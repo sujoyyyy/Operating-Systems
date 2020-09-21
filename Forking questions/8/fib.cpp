@@ -1,37 +1,47 @@
-/*F(n + 2) = F(n + 1) + F(n)
-F(n + 3) = F(n + 1) + F(n + 2) = F(n + 1) * 2 + F(n)
-F(n + 4) = F(n + 2) + F(n + 3) = F(n + 1) * 3 + F(n) * 2
-F(n + 5) = F(n + 3) + F(n + 4) = F(n + 1) * 5 + F(n) * 3
-F(n + 6) = F(n + 4) + F(n + 5) = F(n + 1) * 8 + F(n) * 5
-Hopefully by now, we can see that:
-F(n + k) = F(n + 1) * F(k) + F(n) * F(k - 1)*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
-#include<string>
+#include <string>
+#include <bits/stdc++.h>
 using namespace std;
+ 
+int fib (int n) 
+{ 
+    
+   if(n<=2)
+   {
+   	return 1;
+   }
+   else
+   {
+   	pid_t pid=vfork();
+   	long int fib_0,fib_1;
+   	if(pid==0)
+   	{
+   		fib_0=fib(n-2);
+   		_exit(0);
+   	}
+   	else if(pid>0)
+   	{
+   		fib_1=fib(n-1);
+   	}
+   	wait(NULL);
+   	return fib_1+fib_0;
+   }
+} 
+
 int main(int argc,char* argv[]) 
 {
     int i, n;
     n=stoi(argv[1]);
-    int f[n+1];
-    f[0]=0;
-    f[1]=1;
-    f[2]=1;
-    printf("\nFibonacci Series:\n");
-    printf("%d\n",f[0]);
-    printf("%d\n",f[1]);
-    printf("%d\n",f[2]);
-    for (i = 2; i <= n; ++i) 
+    
+    for(int i=1;i<=n;i++)
     {
-
-    	f[i+1]=f[2]*f[i]+f[1]*f[i-1];
-        printf("%d\n",f[i+1]);
+    	cout<<fib(i)<<endl;
     }
 
-    _exit(0);
     return 0;
 
 }
