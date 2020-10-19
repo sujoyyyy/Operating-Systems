@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<unistd.h>
 #include<stdlib.h>
+#include<string.h>
 #define RD_END 0
 #define WR_END 1
 int main(int argc, char const *argv[])

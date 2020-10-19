@@ -3,7 +3,7 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 #include<string>
 using namespace std;
 
@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
     a[j]= stoi(argv[i]);
     j++;
   }
-  sort(a,a+n/2);
+  sort(a,a+n/2);int count=0;
   int beg=0;
   int end=n/2;
   while(beg<=end)

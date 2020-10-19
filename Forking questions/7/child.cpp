@@ -9,7 +9,7 @@ using namespace std;
 int main(int argc, char *argv[])
 {   
 	
-  int count=0;
+    int count=0;
 	int n= stoi(argv[0]);
 	int a[100];int j=0;
 	int key=stoi(argv[1]);
