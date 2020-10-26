@@ -1,7 +1,7 @@
 #include<pthread.h>
 #include<stdio.h>
 #include<stdlib.h>
-int fib=1,fib1=1,fib2=1;
+long long int fib=1,fib1=1,fib2=1;
 void *gen1(void *param);
 void *gen2(void *param);
 int main(int argc, char const *argv[])
@@ -23,14 +23,14 @@ int main(int argc, char const *argv[])
 		pthread_join(tid1,NULL);
 		pthread_join(tid2,NULL);
 		fib=fib1+fib2;
-		printf("%d\n",fib);
+		printf("%lld\n",fib);
 	}
 	return 0;
 }
 void *gen1(void *param)
 {
 	int * ar=(int *)param; int n = ar[0];
-	int a = 0, b = 1, c, i; 
+	long long int a = 0, b = 1, c, i; 
     if( n == 0) 
         fib1=a;
     else{
@@ -47,7 +47,7 @@ void *gen1(void *param)
 void *gen2(void *param)
 {
   int * ar=(int *)param; int n = ar[0];
-	int a = 0, b = 1, c, i; 
+	long long int a = 0, b = 1, c, i; 
     if( n == 0) 
         fib2=a;
     else{ 

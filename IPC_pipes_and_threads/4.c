@@ -1,15 +1,16 @@
 #include<stdio.h>
 #include<unistd.h>
 #include<stdlib.h>
+#include<string.h>
 #define RD_END 0
 #define WR_END 1
 int main(int argc, char const *argv[])
 {
 	int pipefd1[2],pipefd2[2];
 	int status1, status2;
-	char str1[10]="SujoyDatta"; //input string
-	char str2[10];
-	char str3[10];
+	char str1[11]="abcdefedcba"; //input string
+	char str2[11];memset(str2,0,sizeof(str2));
+	char str3[11];memset(str3,0,sizeof(str3));
 	status1= pipe(pipefd1);
 	if(status1==-1)
 	{

@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<unistd.h>
 #include<stdlib.h>
+#include<string.h>
 #define RD_END 0
 #define WR_END 1
 int main(int argc, char const *argv[])
@@ -10,6 +11,7 @@ int main(int argc, char const *argv[])
 	char str1[10]="SujoyDatta";
 	char str2[10];
 	char str3[10];
+	memset(str3,0,sizeof(str3));
 	status1= pipe(pipefd1);
 	if(status1==-1)
 	{
@@ -39,8 +41,10 @@ int main(int argc, char const *argv[])
 		close(pipefd1[WR_END]);
 		close(pipefd2[RD_END]);
 		read(pipefd1[RD_END],str2,sizeof(str2));
-		//single character is also a substring
-		str3[0]=str2[2];
+		for (int i = 0; i < 3; ++i)
+		{
+			str3[i]=str2[3+i];
+		}
 		write(pipefd2[WR_END],str3,sizeof(str3)+1);
 
 	}

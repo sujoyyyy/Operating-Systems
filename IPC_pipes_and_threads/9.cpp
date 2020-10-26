@@ -30,15 +30,12 @@ void *gen(void *param)
   
 	pthread_exit(0);
 }
-int main(int argc, char  *argv[])
-{
-    memset(L,-1,sizeof(L));
-    pthread_t tid;
-	pthread_attr_t attr;
-	int m= atoi(argv[argc-2]);
-	int n= atoi(argv[argc-1]);
-	char *X = argv[1];
+void *gen1(void *param)
+{ 
+ 	char **argv= (char **)param;
+ 	char *X = argv[1];
 	char *Y = argv[2];
+	int m=atoi(argv[3]); int n=atoi(argv[4]);
 	for (int i=0; i<=m; i++) 
   	{ 
      for (int j=0; j<=n; j++) 
@@ -51,9 +48,19 @@ int main(int argc, char  *argv[])
          L[i][j] = max(L[i-1][j], L[i][j-1]); 
      } 
     } 
-    pthread_attr_init(&attr);
-	pthread_create(&tid,NULL,gen,(void *)argv);
-	pthread_join(tid,NULL);
-	cout << "LCS of " << X << " and " << Y << " is " << lcs<<endl; 
+	pthread_exit(0);
+}
+int main(int argc, char  *argv[])
+{
+    memset(L,-1,sizeof(L));
+    pthread_t tid1,tid2;
+	pthread_attr_t attr1,attr2;
+	pthread_attr_init(&attr2);
+	pthread_create(&tid2,NULL,gen1,(void *)argv);
+	pthread_join(tid2,NULL);
+    pthread_attr_init(&attr1);
+	pthread_create(&tid1,NULL,gen,(void *)argv);
+	pthread_join(tid1,NULL);
+	cout << lcs<<endl; 
     return 0;
 }
