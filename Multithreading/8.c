@@ -49,13 +49,15 @@ void *transpose(void *nums)
 {
   int i, j;float r=k;
   float b[25][25], inverse[25][25], d;
- 
+ printf("The transpose of the matrix is \n");
   for (i = 0;i < r; i++)
     {
      for (j = 0;j < r; j++)
        {
          b[i][j] = fac[j][i];
+         printf("\t%f ",b[i][j]);
         }
+        printf("\n");
     }
   d = determinant(a, r);
   for (i = 0;i < r; i++)
@@ -65,7 +67,7 @@ void *transpose(void *nums)
         inverse[i][j] = b[i][j] / d;
         }
     }
-   printf("\n\n\nThe inverse of matrix is : \n");
+   printf("The inverse of matrix is : \n");
  
    for (i = 0;i < r; i++)
     {
@@ -112,9 +114,56 @@ void *cofactor(void *nums)
     pthread_exit(0);
 }
 
+void *magic(void *nums)
+{
+    float sum = 0,sum2=0;  
+    for (int i = 0; i < k; i++) 
+        sum = sum + a[i][i]; 
+    
+    for (int i = 0; i < k; i++) 
+        sum2 = sum2 + a[i][(int)(k-1-i)]; 
+  
+    if(sum!=sum2)  
+       {printf("No it is not a magic square\n");pthread_exit(0);} 
+  
+    // For sums of Rows  
+    for (int i = 0; i < k; i++) { 
+          
+        float rowSum = 0;      
+        for (int j = 0; j < k; j++) 
+            rowSum += a[i][j]; 
+          
+        // check if every row sum is 
+        // equal to prime diagonal sum 
+        if (rowSum != sum) 
+            {printf("No it is not a magic square\n");pthread_exit(0);} 
+    } 
+  
+    // For sums of Columns 
+    for (int i = 0; i < k; i++) { 
+          
+        float colSum = 0;      
+        for (int j = 0; j < k; j++) 
+            colSum += a[j][i]; 
+  
+        // check if every column sum is  
+        // equal to prime diagonal sum 
+        if (sum != colSum)  
+        {
+          printf("No it is not a magic square\n");pthread_exit(0);
+        } 
+    } 
+  
+    printf("It is a magic square\n");pthread_exit(0);
+} 
+
+
+  
+
+
 int main()
 {
-  pthread_t tid1,tid2;
+  pthread_t tid1,tid2,tid3;
   pthread_attr_t attr;
   float d;
   int i, j;
@@ -129,6 +178,7 @@ int main()
         }
     }
   d = determinant(a, k);
+  printf("The determinant of the matrix is = %f\n",d);
   if (d == 0)
    printf("\nInverse of Entered Matrix is not possible\n");
   else
@@ -140,6 +190,10 @@ int main()
     pthread_attr_init(&attr);
     pthread_create(&tid2,NULL,transpose,NULL);
     pthread_join(tid2,NULL);
+
+     pthread_attr_init(&attr);
+    pthread_create(&tid3,NULL,magic,NULL);
+    pthread_join(tid3,NULL);
    }
   return 0;
 }
